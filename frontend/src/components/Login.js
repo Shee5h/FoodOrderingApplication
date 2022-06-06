@@ -20,17 +20,18 @@ export default function Login() {
         AuthService.login(data.email, data.password)
             .then(() => {
                 fetch(`http://localhost:8080/api/user/${data.email}`)
+                    .then(response => response.json())
                     .then(data => {
                         if (data.roles.some(role => role.name === "ROLE_ADMIN")) {
                             navigate("/adminBoard");
-
                         } else {
                             navigate("/mainPage");
                         }
-                    })
-                    .catch(() => setMessage("El. paštas arba slaptažodis yra neteisingas"))
+                        console.log("something");
+                    });
             })
-    }
+            .catch(() => setMessage("El. paštas arba slaptažodis yra neteisingas"));
+    };
 
     // password visibility toggle
     const togglePassword = (e) => {

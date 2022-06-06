@@ -40,7 +40,7 @@
 }
 
 .form-horizontal .form-group {
-    margin: 0 0 0.625rem;
+    margin: 0 0 0.625rem !important;
     position: relative;
 }
 

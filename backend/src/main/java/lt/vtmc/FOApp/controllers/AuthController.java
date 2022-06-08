@@ -53,7 +53,9 @@ public class AuthController {
 
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
+		
 		SecurityContextHolder.getContext().setAuthentication(authentication);
+		
 		String jwt = jwtUtils.generateJwtToken(authentication);
 
 		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
@@ -61,7 +63,7 @@ public class AuthController {
 				.map(item -> item.getAuthority())
 				.collect(Collectors.toList());
 		
-		System.out.println("prisijungiau");
+		System.out.println("login successful");
 
 		return ResponseEntity.ok(new JwtResponse(jwt,
 				userDetails.getId(),

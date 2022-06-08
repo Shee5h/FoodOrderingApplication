@@ -1,10 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLock, faUser, faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
 import AuthService from "../services/AuthService";
-// import { RenderContext } from './RenderContext';
 import "./LoginAndRegister.css";
 import logo from "../images/Cibus_logo.png"
 import { Link } from "react-router-dom";
@@ -19,20 +18,11 @@ export default function Login() {
     const onSubmit = data => {
         AuthService.login(data.email, data.password)
             .then(() => {
-
-                // fetch(`http://localhost:8080/api/users/${data.email}`)
-                // .then(response => response.json())
-                // .then(data => {
-                //     if (data.roles.some(role => role.name === "ROLE_ADMIN")) {
-                //         navigate("/adminBoard");
-                //     } else {
-                //         navigate("/mainPage");
-                //     }
-                // });
-
-                navigate("/adminBoard")
-
-                // console.log("YEEEET");
+                if (AuthService.getCurrentUser().roles.includes("ROLE_ADMIN")) {
+                    navigate("/adminBoard");
+                } else {
+                    navigate("/mainPage");
+                }
             })
             .catch(() => setMessage("El. paštas arba slaptažodis yra neteisingas"));
     };

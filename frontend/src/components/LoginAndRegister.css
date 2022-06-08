@@ -10,7 +10,7 @@
 }
 
 .login_bg_color {
-    background: #fc9c49;
+    background: var(--mainColor);
     min-height: 100vh;
 }
 

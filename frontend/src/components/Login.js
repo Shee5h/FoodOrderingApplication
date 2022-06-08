@@ -37,7 +37,7 @@ export default function Login() {
         <>
             <div className="container-fluid login_bg_color">
                 <div className="row justify-content-center">
-                    <div className="col-lg-4 col-md-4 col-sm-8 col-xs-8">
+                    <div className="col-lg-4 col-md-5 col-sm-8 col-xs-8">
                         <div className="form-container">
                             <img src={logo} alt="cibus logo" className="logo_config"></img>
 

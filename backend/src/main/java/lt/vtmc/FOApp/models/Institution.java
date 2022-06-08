@@ -3,9 +3,16 @@ package lt.vtmc.FOApp.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "institutions")
 public class Institution {
+	
+	@ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
 	
 	@NotBlank
 	private String businessName;
@@ -18,10 +25,10 @@ public class Institution {
 	private String address;
 	
 	public Institution() {
-		
 	}
 	
-	public Institution(@NotBlank String businessName, @NotBlank Long codeName, @NotBlank String address) {
+	public Institution(User user, @NotBlank String businessName, @NotBlank Long codeName, @NotBlank String address) {
+		this.user = user;
 		this.businessName = businessName;
 		this.codeName = codeName;
 		this.address = address;

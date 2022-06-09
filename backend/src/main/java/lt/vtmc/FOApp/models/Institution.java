@@ -2,23 +2,27 @@ package lt.vtmc.FOApp.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+//import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "institutions")
 public class Institution {
 	
-	@ManyToOne
-    @JoinColumn(name = "user_id")
-    @JsonIgnore
-    private User user;
+//	@ManyToOne
+//    @JoinColumn(name = "user_id")
+//    @JsonIgnore
+//    private User user;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long institutionId;
 	
 	@NotBlank
 	private String businessName;
 	
-	@Id
-	@NotBlank
+	@NotNull
 	private Long codeName;
 	
 	@NotBlank
@@ -27,8 +31,7 @@ public class Institution {
 	public Institution() {
 	}
 	
-	public Institution(User user, @NotBlank String businessName, @NotBlank Long codeName, @NotBlank String address) {
-		this.user = user;
+	public Institution( @NotBlank String businessName, @NotNull Long codeName, @NotBlank String address) {
 		this.businessName = businessName;
 		this.codeName = codeName;
 		this.address = address;
@@ -38,6 +41,14 @@ public class Institution {
 		this.businessName = businessName;
 	}
 	
+	public Long getInstitutionId() {
+		return institutionId;
+	}
+
+	public void setInstitutionId(Long institutionId) {
+		this.institutionId = institutionId;
+	}
+
 	public String getBusinessName() {
 		return this.businessName;
 	}
@@ -57,4 +68,11 @@ public class Institution {
 	public String getAddress() {
 		return this.address;
 	}
+
+	@Override
+	public String toString() {
+		return "Institution [id=" + institutionId + ", businessName=" + businessName + ", codeName=" + codeName + ", address="
+				+ address + "]";
+	}
+	
 }

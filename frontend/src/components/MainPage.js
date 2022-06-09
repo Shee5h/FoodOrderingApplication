@@ -21,7 +21,7 @@ export default function MainPage() {
                 <div style={{ display: noUser ? "contents" : "none" }}><strong>You're signed out</strong></div>
                 <div className="row row-cols-1 row-cols-md-3 g-4">
                     <div className="col">
-                        <div className="card h-100">
+                        <div className="card h-200">
                             {/* <img src="..." className="card-img-top" alt="..." /> */}
                             <div className="card-body">
                                 <h5 className="card-title">Card title</h5>

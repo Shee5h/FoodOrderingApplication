@@ -2,13 +2,17 @@ package lt.vtmc.FOApp.payload.responses;
 
 public class InstitutionResponse {
 	
+	
+	private Long institutionId;
+	
 	private Long codeName;
 	
 	private String address;
 
 	private String businessName;
 	
-	public InstitutionResponse(Long codeName, String address, String businessName) {
+	public InstitutionResponse(Long institutionId, Long codeName, String address, String businessName) {
+		this.institutionId = institutionId;
 		this.codeName = codeName;
 		this.address = address;
 		this.businessName = businessName;
@@ -38,12 +42,21 @@ public class InstitutionResponse {
 		return this.businessName;
 	}
 	
+	public void setId(Long id) {
+		this.institutionId = id;
+	}
+	
+	public Long getId() {
+		return this.institutionId;
+	}
+	
 	@Override
     public String toString() {
         return "InstitutionResponse{" +
-                "codeName='" + this.codeName + '\'' +
-                ", businessName='" + this.businessName + '\'' +
-                ", address='" + this.address + '\'' +
+        		"institutionId='" + institutionId + '\'' +
+                "codeName='" + codeName + '\'' +
+                ", businessName='" + businessName + '\'' +
+                ", address='" + address + '\'' +
                 '}';
     }
 }

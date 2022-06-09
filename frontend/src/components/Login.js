@@ -12,7 +12,6 @@ export default function Login() {
     const { register, handleSubmit, formState: { errors } } = useForm({ mode: 'onSubmit', reValidateMode: 'onSubmit' });
     const [passwordShown, setPasswordShown] = useState(false);
     const [message, setMessage] = useState("");
-    // const { render, setRender } = useContext(RenderContext);
     const navigate = useNavigate();
 
     const onSubmit = data => {
@@ -20,8 +19,11 @@ export default function Login() {
             .then(() => {
                 if (AuthService.getCurrentUser().roles.includes("ROLE_ADMIN")) {
                     navigate("/adminBoard");
+                    alert("You have logged in as an administrator!");
+
                 } else {
                     navigate("/mainPage");
+                    alert("You have logged in as a user!");
                 }
             })
             .catch(() => setMessage("El. paštas arba slaptažodis yra neteisingas"));
@@ -38,7 +40,7 @@ export default function Login() {
             <div className="container-fluid login_bg_color">
                 <div className="row justify-content-center">
                     <div className="col-lg-4 col-md-5 col-sm-8 col-xs-8">
-                        <div className="form-container">
+                        <div className="form-container" id="form_bg">
                             <img src={logo} alt="cibus logo" className="logo_config"></img>
 
                             <form className="form-horizontal" onSubmit={handleSubmit(onSubmit)}>

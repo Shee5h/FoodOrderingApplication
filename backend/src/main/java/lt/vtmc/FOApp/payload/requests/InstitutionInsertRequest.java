@@ -2,11 +2,11 @@ package lt.vtmc.FOApp.payload.requests;
 
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class InstitutionInsertRequest {
-	
-	@Id
-	@NotBlank
+
+	@NotNull
 	private Long codeName;
 	
 	@NotBlank

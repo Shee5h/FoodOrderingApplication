@@ -9,8 +9,8 @@ import Registration from './components/Registration';
 // import Test from './components/test'
 
 function App() {
-  
-// a function used to hide navbar
+
+  // a function used to hide navbar
   const usePathname = () => {
     const location = useLocation();
     return location.pathname;
@@ -36,6 +36,7 @@ function App() {
           <Route path="/register" element={<Registration />} />
           <Route path="/adminBoard" element={<AdminBoard />} />
           <Route path="/" element={<Login />} />
+          <Route path="*" element={<p>There's nothing here. ERROR 404 not found!</p>} />
         </Routes>
       </div>
 

@@ -1,6 +1,9 @@
 .topnav {
     overflow: hidden;
     background-color: var(--mainColor);
+    -webkit-box-shadow: 0px 8px 15px -4px rgba(0, 0, 0, 0.71);
+    box-shadow: 0px 8px 15px -4px rgba(0, 0, 0, 0.5);
+
 }
 
 .logo_navbar {

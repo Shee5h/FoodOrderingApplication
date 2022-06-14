@@ -3,7 +3,10 @@ package lt.vtmc.FOApp.payload.requests;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-public class InstitutionInsertRequest {
+public class InstitutionUpdateRequest {
+	
+	@NotNull
+	private Long institutionId;
 
 	@NotNull
 	private Long codeName;
@@ -13,12 +16,6 @@ public class InstitutionInsertRequest {
 	
 	@NotBlank
 	private String address;
-	
-//	public InstitutionInsertRequest(@NotBlank Long codeName, @NotBlank String businessName, @NotBlank String address) {
-//		this.codeName = codeName;
-//		this.businessName = businessName;
-//		this.address = address;
-//	}
 	
 	public void setCodeName(Long codeName) {
 		this.codeName = codeName;
@@ -43,14 +40,24 @@ public class InstitutionInsertRequest {
 	public String getAddress() {
 		return this.address;
 	}
+
 	
+	public Long getInstitutionId() {
+		return institutionId;
+	}
+
+	public void setInstitutionId(Long institutionId) {
+		this.institutionId = institutionId;
+	}
+
 	@Override
     public String toString() {
-        return "InstitutionInsertRequest{" +
+        return "InstitutionUpdateRequest{" +
+        		"id='" + this.institutionId + '\'' +
                 ", codeName='" + this.codeName + '\'' +
                 ", businessName='" + this.businessName + '\'' +
                 ", address='" + this.address + '\'' +
                 '}';
     }
-
+	
 }

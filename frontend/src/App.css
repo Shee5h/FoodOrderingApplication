@@ -2,6 +2,10 @@
   --mainColor: #fc9c49;
 }
 
+body {
+  background: rgb(246, 246, 246) !important;
+}
+
 /* .App {
   text-align: center;
 } */

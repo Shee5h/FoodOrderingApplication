@@ -4,28 +4,18 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.core.Authentication;
-//import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import lt.vtmc.FOApp.models.Institution;
-//import lt.vtmc.FOApp.models.User;
 import lt.vtmc.FOApp.payload.requests.InstitutionInsertRequest;
 import lt.vtmc.FOApp.payload.requests.InstitutionUpdateRequest;
 import lt.vtmc.FOApp.payload.responses.InstitutionResponse;
 import lt.vtmc.FOApp.repositories.InstitutionRepository;
-//import lt.vtmc.FOApp.repositories.UserRepository;
 
 @Service
 public class InstitutionService {
 	
 	private InstitutionRepository institutionRepository;
-//	private UserRepository userRepository;
-	
-//	private String getCurrentPrincipalEmail() {
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        return authentication.getName();
-//    }
 	
 	@Autowired
 	public InstitutionService(InstitutionRepository institutionRepository) {
@@ -63,6 +53,14 @@ public class InstitutionService {
 				institutionRequest.getCodeName(),
 				institutionRequest.getAddress(),
 				institutionRequest.getBusinessName());
+	}
+	
+	public InstitutionResponse deleteInstitution(Long institutionId) {
+		
+		Institution institution = institutionRepository.getById(institutionId);
+		institutionRepository.delete(institution);
+		return null;
+		
 	}
 	
 	

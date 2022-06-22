@@ -5,20 +5,11 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import lt.vtmc.FOApp.models.Institution;
-import lt.vtmc.FOApp.payload.requests.InstitutionInsertRequest;
-import lt.vtmc.FOApp.payload.requests.InstitutionUpdateRequest;
+import lt.vtmc.FOApp.payload.requests.*;
 import lt.vtmc.FOApp.payload.responses.InstitutionResponse;
 import lt.vtmc.FOApp.services.InstitutionService;
 
@@ -45,6 +36,14 @@ public class InstitutionController {
 	@ResponseStatus(HttpStatus.OK)
 	public InstitutionResponse updateInstitution(@Valid @RequestBody InstitutionUpdateRequest institutionRequest) {
 		return this.institutionService.updateInstitution(institutionRequest);
+	}
+	
+	
+	@DeleteMapping("/{institutionId}")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@ResponseStatus(HttpStatus.OK)
+	public InstitutionResponse deleteInstitution(@PathVariable Long institutionId) {
+		return this.institutionService.deleteInstitution(institutionId);
 	}
 	
 	@GetMapping

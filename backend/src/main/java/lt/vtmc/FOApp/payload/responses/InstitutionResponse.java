@@ -1,8 +1,7 @@
 package lt.vtmc.FOApp.payload.responses;
 
 public class InstitutionResponse {
-	
-	
+
 	private Long institutionId;
 	
 	private Long codeName;

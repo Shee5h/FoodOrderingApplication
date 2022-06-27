@@ -21,9 +21,8 @@ public class Menu {
 	@NotBlank
 	private String menuName;
 	
-//	@NotBlank
-//	@ManyToOne
-//    @JoinColumn(name = "dish_id")
-//	private List<Dish> dishes;
+	@ManyToOne
+    @JoinColumn(name = "institution_id")
+	private Institution institution;
 	
 }

@@ -1,20 +1,20 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthService from "../services/AuthService";
 import InstitutionService from "../services/InstitutionService";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faLock, faUser } from '@fortawesome/free-solid-svg-icons';
 import { useForm } from "react-hook-form";
-// import logo from "../images/Cibus_logo.png";
-// import { uuid } from "uuidv4";
 import { v4 as uuid } from 'uuid';
 import "./AdminBoard.css"
+import DeleteInstitution from "./editDeleteComponents/DeleteInstitution";
+import EditInstitution from "./editDeleteComponents/EditInstitution";
 
 export default function AdminBoard() {
 
     const [institutions, setInstitutions] = useState([]);
-    const { register, handleSubmit, formState: { errors } } = useForm({ mode: 'onSubmit', reValidateMode: 'onSubmit' });
-    // const value = useContext(institutions);
+    const {
+        register,
+        handleSubmit,
+        formState: { errors } } = useForm({ mode: 'onSubmit', reValidateMode: 'onSubmit' });
     const user = AuthService.getCurrentUser();
     const navigate = useNavigate();
 
@@ -36,22 +36,17 @@ export default function AdminBoard() {
         InstitutionService.getAllInstitutions().then((response) => {
             setInstitutions(response.data)
         })
-
-
-
     }, [])
 
     // submit function
     const onSubmit = data => {
         InstitutionService.saveInstitution(data);
         console.log(data);
-
-        // setForceRender(!forceRender)
     }
 
     function refreshPage() {
         window.location.reload(false);
-      }
+    }
 
     return (
         <div>
@@ -110,15 +105,23 @@ export default function AdminBoard() {
                     <tbody>
                         {institutions.map((institution) => {
                             return (
-                                <tr key={institution.id + uuid()}>
-                                    <td>{institution.id}</td>
+                                <tr key={institution.institutionId + uuid()}>
+                                    <td>{institution.institutionId}</td>
                                     <td>{institution.codeName}</td>
                                     <td>{institution.businessName}</td>
                                     <td>{institution.address}</td>
                                     <td>
-                                        <button className="btn btn-danger mr-2">Delete</button>
-                                        <button className="btn btn-warning">Edit</button>
-                                        </td>
+                                        <DeleteInstitution
+                                            id={institution.institutionId} />
+                                        <EditInstitution
+                                            institutionId={institution.institutionId}
+                                            codeName={institution.codeName}
+                                            businessName={institution.businessName}
+                                            address={institution.address} />
+                                    </td>
+                                    {/* <div className="col-12">
+                                        urrrr
+                                    </div> */}
                                 </tr>
                             )
                         })}
@@ -127,6 +130,6 @@ export default function AdminBoard() {
 
             </div >
 
-        </div>
+        </div >
     )
 }

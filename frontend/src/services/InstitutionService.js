@@ -12,6 +12,25 @@ const saveInstitution = ({ codeName, businessName, address }) => {
         }, { headers: authHeader() });
 }
 
+const editInstitution = ({ institutionId, codeName, businessName, address }) => {
+    // console.log(institutionId)
+    // console.log(codeName)
+    return axios
+        .put(API_URL + `/${institutionId}`, {
+            institutionId,
+            codeName,
+            businessName,
+            address,
+        }, { headers: authHeader() });
+}
+
+const deleteInstitution = (id) => {
+    return axios
+        .delete(API_URL + `/${id}`, {
+            headers: authHeader()
+        });
+}
+
 const getAllInstitutions = () => {
     return axios
         .get(API_URL, { headers: authHeader() })
@@ -19,5 +38,7 @@ const getAllInstitutions = () => {
 
 export default {
     saveInstitution,
+    deleteInstitution,
+    editInstitution,
     getAllInstitutions
 }

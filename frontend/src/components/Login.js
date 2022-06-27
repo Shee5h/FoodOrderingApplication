@@ -42,6 +42,7 @@ export default function Login() {
                     <div className="col-lg-4 col-md-5 col-sm-8 col-xs-8">
                         <div className="form-container" id="form_bg">
                             <img src={logo} alt="cibus logo" className="logo_config"></img>
+                            <div style={{ color: "white", marginBottom: "1rem" }}>Maisto užsakymo aplikacija</div>
 
                             <form className="form-horizontal" onSubmit={handleSubmit(onSubmit)}>
 

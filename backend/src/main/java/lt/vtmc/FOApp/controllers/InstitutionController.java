@@ -31,7 +31,7 @@ public class InstitutionController {
 		return this.institutionService.saveInstitution(institutionRequest);
 	}
 	
-	@PutMapping
+	@PutMapping("/{insitutionId}")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@ResponseStatus(HttpStatus.OK)
 	public InstitutionResponse updateInstitution(@Valid @RequestBody InstitutionUpdateRequest institutionRequest) {

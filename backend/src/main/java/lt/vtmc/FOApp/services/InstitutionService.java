@@ -25,10 +25,12 @@ public class InstitutionService {
 	public InstitutionResponse saveInstitution(InstitutionInsertRequest institutionRequest) {
 
 		Institution institution = new Institution(
-				institutionRequest.getBusinessName(),
-				institutionRequest.getCodeName(),
-				institutionRequest.getAddress()
 				);
+		
+		institution.setAddress(institutionRequest.getAddress().substring(0, 1).toUpperCase() + institutionRequest.getAddress().substring(1));
+		institution.setBusinessName(institutionRequest.getBusinessName().substring(0, 1).toUpperCase() + institutionRequest.getBusinessName().substring(1));
+		institution.setCodeName(institutionRequest.getCodeName());
+		
 		institutionRepository.save(institution);
 		
 		return new InstitutionResponse(
@@ -42,8 +44,8 @@ public class InstitutionService {
 		
 		Institution institution = institutionRepository.getById(institutionRequest.getInstitutionId());
 		
-		institution.setAddress(institutionRequest.getAddress());
-		institution.setBusinessName(institutionRequest.getBusinessName());
+		institution.setAddress(institutionRequest.getAddress().substring(0, 1).toUpperCase() + institutionRequest.getAddress().substring(1));
+		institution.setBusinessName(institutionRequest.getBusinessName().substring(0, 1).toUpperCase() + institutionRequest.getBusinessName().substring(1));
 		institution.setCodeName(institutionRequest.getCodeName());
 		
 		institutionRepository.save(institution);

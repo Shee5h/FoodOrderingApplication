@@ -28,7 +28,6 @@ export default function EditInstitution(props) {
                 className="btn btn-warning"
                 data-bs-toggle="modal"
                 data-bs-target={"#id" + props.institutionId}
-                // style={{ paddingTop: 0, paddingBottom: 10 }}
             >
                 Edit
             </button>
